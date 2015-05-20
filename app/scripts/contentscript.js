@@ -1,7 +1,7 @@
 (function() {
   var inject;
 
-  inject = function(content, callback) {
+  inject = function(content) {
     var script;
     script = document.createElement("script");
     script.type = "text/javascript";

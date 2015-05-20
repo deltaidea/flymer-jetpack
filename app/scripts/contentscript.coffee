@@ -1,5 +1,5 @@
 # Helper function, takes string and injects it as a script to the page context.
-inject = ( content, callback ) ->
+inject = ( content ) ->
 	script = document.createElement "script"
 	script.type = "text/javascript"
 	script.textContent = content
