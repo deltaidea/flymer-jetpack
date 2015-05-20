@@ -39,10 +39,6 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         }
       },
-      compass: {
-        files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-        tasks: ['compass:chrome']
-      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -158,35 +154,6 @@ module.exports = function (grunt) {
           dest: './spec',
           ext: '.js'
         }]
-      }
-    },
-
-     // Compiles Sass to CSS and generates necessary files if requested
-    compass: {
-      options: {
-        sassDir: '<%= config.app %>/styles',
-        cssDir: '<%= config.dist %>/styles',
-        generatedImagesDir: '<%= config.dist %>/images/generated',
-        imagesDir: '<%= config.app %>/images',
-        javascriptsDir: '<%= config.app %>/scripts',
-        fontsDir: '<%= config.app %>/styles/fonts',
-        importPath: '<%= config.app %>/bower_components',
-        httpImagesPath: '/images',
-        httpGeneratedImagesPath: '/images/generated',
-        httpFontsPath: '/styles/fonts',
-        relativeAssets: false,
-        assetCacheBuster: false
-      },
-      chrome: {
-        options: {
-          cssDir: '<%= config.app %>/styles',
-          generatedImagesDir: '<%= config.app %>/images/generated',
-          debugInfo: true
-        }
-      },
-      dist: {
-      },
-      test: {
       }
     },
 
@@ -317,18 +284,15 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up build process
     concurrent: {
       chrome: [
-        'coffee:chrome',
-        'compass:chrome',
+        'coffee:chrome'
       ],
       dist: [
         'coffee:dist',
-        'compass:dist',
         'imagemin',
         'svgmin'
       ],
       test: [
-        'coffee:test',
-        'compass:test',
+        'coffee:test'
       ]
     },
 
