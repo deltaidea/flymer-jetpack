@@ -24,3 +24,7 @@ inject ->
 			if el?.style?.display is "none"
 				el.style.setProperty "display", "block", "important"
 	, 100
+
+# Show full message history by default.
+for conversationLink in document.querySelectorAll ".linkB"
+	conversationLink.href += "&full=1"
