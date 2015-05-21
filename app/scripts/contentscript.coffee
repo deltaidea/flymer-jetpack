@@ -14,6 +14,10 @@ document.getElementById( "content" ).setAttribute "id", "nope-nope-nope"
 inject ->
 	( window["reply-input"] or window["note-input"] or {} ).onpaste = null
 
-# Show tag list if AdBlock blocks it.
-document.getElementById( "trending-full" ).className =
-	"trending block-long unselectable"
+# Show these tags if AdBlock blocks them.
+inject ->
+	[ "#trending-full", ".tlayout" ].forEach ( selector ) ->
+		el = document.querySelector selector
+		console.log el
+		if el and el.style.display is "none"
+			el.style.setProperty "display", "block", "important"

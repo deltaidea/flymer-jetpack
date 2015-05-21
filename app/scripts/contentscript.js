@@ -18,6 +18,15 @@
     return (window["reply-input"] || window["note-input"] || {}).onpaste = null;
   });
 
-  document.getElementById("trending-full").className = "trending block-long unselectable";
+  inject(function() {
+    return ["#trending-full", ".tlayout"].forEach(function(selector) {
+      var el;
+      el = document.querySelector(selector);
+      console.log(el);
+      if (el && el.style.display === "none") {
+        return el.style.setProperty("display", "block", "important");
+      }
+    });
+  });
 
 }).call(this);
