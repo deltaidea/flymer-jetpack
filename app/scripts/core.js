@@ -1,7 +1,5 @@
 (function() {
-  var B, conversationId, d, link, textarea, _i, _len, _ref, _ref1, _ref2, _ref3;
-
-  textarea = window["reply-input"] || window["note-input"];
+  var B, conversationId, d, link, _i, _len, _ref, _ref1, _ref2, _ref3, _ref4;
 
   _ref = document.querySelectorAll(".linkB");
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
@@ -18,8 +16,8 @@
     }
   });
 
-  if (textarea != null) {
-    textarea.value = (_ref3 = localStorage[conversationId]) != null ? _ref3 : "";
+  if ((_ref3 = window["reply-input"] || window["note-input"]) != null) {
+    _ref3.value = (_ref4 = localStorage[conversationId]) != null ? _ref4 : "";
   }
 
 
