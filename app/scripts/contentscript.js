@@ -15,18 +15,22 @@
   document.getElementById("content").setAttribute("id", "nope-nope-nope");
 
   inject(function() {
-    return (window["reply-input"] || window["note-input"] || {}).onpaste = null;
+    return setTimeout(function() {
+      var _ref;
+      return (_ref = window["reply-input"] || window["note-input"]) != null ? _ref.onpaste = null : void 0;
+    }, 100);
   });
 
   inject(function() {
-    return ["#trending-full", ".tlayout"].forEach(function(selector) {
-      var el;
-      el = document.querySelector(selector);
-      console.log(el);
-      if (el && el.style.display === "none") {
-        return el.style.setProperty("display", "block", "important");
-      }
-    });
+    return setTimeout(function() {
+      return ["#trending-full", ".tlayout"].forEach(function(selector) {
+        var el, _ref;
+        el = document.querySelector(selector);
+        if ((el != null ? (_ref = el.style) != null ? _ref.display : void 0 : void 0) === "none") {
+          return el.style.setProperty("display", "block", "important");
+        }
+      });
+    }, 100);
   });
 
 }).call(this);

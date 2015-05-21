@@ -12,12 +12,15 @@ document.getElementById( "content" ).setAttribute "id", "nope-nope-nope"
 
 # Allow Ctrl + V.
 inject ->
-	( window["reply-input"] or window["note-input"] or {} ).onpaste = null
+	setTimeout ->
+		( window["reply-input"] or window["note-input"] )?.onpaste = null
+	, 100
 
 # Show these tags if AdBlock blocks them.
 inject ->
-	[ "#trending-full", ".tlayout" ].forEach ( selector ) ->
-		el = document.querySelector selector
-		console.log el
-		if el and el.style.display is "none"
-			el.style.setProperty "display", "block", "important"
+	setTimeout ->
+		[ "#trending-full", ".tlayout" ].forEach ( selector ) ->
+			el = document.querySelector selector
+			if el?.style?.display is "none"
+				el.style.setProperty "display", "block", "important"
+	, 100
