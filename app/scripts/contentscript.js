@@ -1,5 +1,5 @@
 (function() {
-  var conversationLink, inject, _i, _len, _ref;
+  var conversationId, inject, link, textarea, _i, _len, _ref, _ref1, _ref2, _ref3;
 
   inject = function(content) {
     var script;
@@ -13,6 +13,8 @@
   };
 
   document.getElementById("content").setAttribute("id", "nope-nope-nope");
+
+  textarea = window["reply-input"] || window["note-input"];
 
   inject(function() {
     return setTimeout(function() {
@@ -37,6 +39,21 @@
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
     link = _ref[_i];
     link.href = link.href.replace("#new", "&full=1#new");
+  }
+
+  conversationId = (_ref1 = (_ref2 = document.location.href.match(/c=(\d*)/)) != null ? _ref2[1] : void 0) != null ? _ref1 : "new-note";
+
+  console.log(conversationId);
+
+  document.addEventListener("keyup", function(e) {
+    var _ref3;
+    if ((_ref3 = e.target.id) === "reply-input" || _ref3 === "note-input") {
+      return localStorage[conversationId] = e.target.value;
+    }
+  });
+
+  if (textarea != null) {
+    textarea.value = (_ref3 = localStorage[conversationId]) != null ? _ref3 : "";
   }
 
 }).call(this);
