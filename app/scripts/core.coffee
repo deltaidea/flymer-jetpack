@@ -1,6 +1,3 @@
-# Disable removing content on "/bin" page.
-document.getElementById( "content" ).setAttribute "id", "nope-nope-nope"
-
 # This is the textarea on this page if there is one.
 textarea = window["reply-input"] or window["note-input"]
 
@@ -2655,35 +2652,6 @@ do ->
 	# @return {undefined}
 	###
 
-	load = ->
-		node = d('.ad-unit')[0]
-		if node
-
-			###*
-			# @param {string} text
-			# @return {undefined}
-			###
-
-			load = (text) ->
-				if '' != text
-
-					###* @type {string} ###
-
-					d('#content').innerHTML = text
-				return
-
-			if 0 == node.offsetHeight
-
-				###* @type {string} ###
-
-				d('#content').innerHTML = ''
-				exports.S window.location.protocol + '//' + window.location.host + '/request/ab', load
-		return
-
-	###*
-	# @return {undefined}
-	###
-
 	show = ->
 		values = d('.form-submit')
 
@@ -3968,7 +3936,6 @@ do ->
 		handler()
 		buildDeck()
 		if data.na
-			setTimeout load, 1e3
 			callers.B()
 			addEvent()
 			setup()

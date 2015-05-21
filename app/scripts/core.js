@@ -1,8 +1,6 @@
 (function() {
   var B, conversationId, d, link, textarea, _i, _len, _ref, _ref1, _ref2, _ref3;
 
-  document.getElementById("content").setAttribute("id", "nope-nope-nope");
-
   textarea = window["reply-input"] || window["note-input"];
 
   _ref = document.querySelectorAll(".linkB");
@@ -2122,7 +2120,7 @@
   (function() {
 
     /** @type {HTMLDocument} */
-    var add, addEvent, apply, build, buildDeck, callback, callers, cb, config, data, debug, doc, emptyHandler, event, exports, f, flush, fn, handler, i, init, initialize, load, next, quote, runTest, self, setup, show, start, submit, target, test, throttledUpdate, update, value;
+    var add, addEvent, apply, build, buildDeck, callback, callers, cb, config, data, debug, doc, emptyHandler, event, exports, f, flush, fn, handler, i, init, initialize, next, quote, runTest, self, setup, show, start, submit, target, test, throttledUpdate, update, value;
     doc = document;
     data = {};
     target = B.G;
@@ -2778,34 +2776,6 @@
         event.add(items[i], 'keydown', click);
         self.b(items[i], 'ks');
         i++;
-      }
-    };
-
-    /**
-    	 * @return {undefined}
-     */
-    load = function() {
-      var node;
-      node = d('.ad-unit')[0];
-      if (node) {
-
-        /**
-        			 * @param {string} text
-        			 * @return {undefined}
-         */
-        load = function(text) {
-          if ('' !== text) {
-
-            /** @type {string} */
-            d('#content').innerHTML = text;
-          }
-        };
-        if (0 === node.offsetHeight) {
-
-          /** @type {string} */
-          d('#content').innerHTML = '';
-          exports.S(window.location.protocol + '//' + window.location.host + '/request/ab', load);
-        }
       }
     };
 
@@ -4149,7 +4119,6 @@
       handler();
       buildDeck();
       if (data.na) {
-        setTimeout(load, 1e3);
         callers.B();
         addEvent();
         setup();
