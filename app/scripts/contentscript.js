@@ -43,8 +43,6 @@
 
   conversationId = (_ref1 = (_ref2 = document.location.href.match(/c=(\d*)/)) != null ? _ref2[1] : void 0) != null ? _ref1 : "new-note";
 
-  console.log(conversationId);
-
   document.addEventListener("keyup", function(e) {
     var _ref3;
     if ((_ref3 = e.target.id) === "reply-input" || _ref3 === "note-input") {

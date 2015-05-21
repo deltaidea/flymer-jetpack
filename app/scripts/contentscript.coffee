@@ -36,7 +36,6 @@ for link in document.querySelectorAll ".linkB"
 
 # Auto-save drafts.
 conversationId = document.location.href.match( /c=(\d*)/ )?[ 1 ] ? "new-note"
-console.log conversationId
 
 document.addEventListener "keyup", ( e ) ->
 	if e.target.id in [ "reply-input", "note-input" ]
