@@ -1,4 +1,4 @@
-# Helper function, takes string and injects it as a script to the page context.
+# Helper function, takes code and injects it to the page context.
 inject = ( content ) ->
 	if typeof content is "function"
 		content = "(" + content + ")()"
