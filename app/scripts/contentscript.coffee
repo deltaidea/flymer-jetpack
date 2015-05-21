@@ -37,14 +37,6 @@ xhr.onload = ->
 	# This is the textarea on this page if there is one.
 	textarea = window["reply-input"] or window["note-input"]
 
-	# Allow Ctrl + V.
-	inject ->
-		setTimeout ->
-			# This will be injected into another scope, so can't use
-			# the `textarea` variable.
-			( window["reply-input"] or window["note-input"] )?.onpaste = null
-		, 100
-
 	# Show these tags if AdBlock blocks them.
 	inject ->
 		setTimeout ->

@@ -37,12 +37,6 @@
     textarea = window["reply-input"] || window["note-input"];
     inject(function() {
       return setTimeout(function() {
-        var _ref;
-        return (_ref = window["reply-input"] || window["note-input"]) != null ? _ref.onpaste = null : void 0;
-      }, 100);
-    });
-    inject(function() {
-      return setTimeout(function() {
         return ["#trending-full", ".tlayout"].forEach(function(selector) {
           var el, _ref;
           el = document.querySelector(selector);

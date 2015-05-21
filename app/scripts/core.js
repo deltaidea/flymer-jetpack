@@ -2688,9 +2688,6 @@
         elems[i].np = '';
         result = target.t(elems[i]);
         result.onsubmit = init(elems[i], result);
-
-        /** @type {function (): ?} */
-        elems[i].ondrop = elems[i].onpaste = elems[i].oncontextmenu = emptyHandler;
         result = fn(elems[i]);
         target.J(elems[i], result);
         setInterval(result, 1e3);
