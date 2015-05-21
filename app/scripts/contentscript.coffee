@@ -26,5 +26,5 @@ inject ->
 	, 100
 
 # Show full message history by default.
-for conversationLink in document.querySelectorAll ".linkB"
-	conversationLink.href += "&full=1"
+for link in document.querySelectorAll ".linkB"
+	link.href = link.href.replace "#new", "&full=1#new"

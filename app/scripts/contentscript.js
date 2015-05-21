@@ -35,8 +35,8 @@
 
   _ref = document.querySelectorAll(".linkB");
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-    conversationLink = _ref[_i];
-    conversationLink.href += "&full=1";
+    link = _ref[_i];
+    link.href = link.href.replace("#new", "&full=1#new");
   }
 
 }).call(this);
