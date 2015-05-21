@@ -15,7 +15,7 @@
   document.getElementById("content").setAttribute("id", "nope-nope-nope");
 
   inject(function() {
-    return (window["reply-input"] || window["note-input"]).onpaste = null;
+    return (window["reply-input"] || window["note-input"] || {}).onpaste = null;
   });
 
   document.getElementById("trending-full").className = "trending block-long unselectable";

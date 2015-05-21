@@ -12,7 +12,7 @@ document.getElementById( "content" ).setAttribute "id", "nope-nope-nope"
 
 # Allow Ctrl + V.
 inject ->
-	( window["reply-input"] or window["note-input"] ).onpaste = null
+	( window["reply-input"] or window["note-input"] or {} ).onpaste = null
 
 # Show tag list if AdBlock blocks it.
 document.getElementById( "trending-full" ).className =
