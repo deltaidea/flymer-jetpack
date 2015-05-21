@@ -1,5 +1,12 @@
 (function() {
-  var xhr;
+  var injectScript, xhr;
+
+  injectScript = function(filename) {
+    var script;
+    script = document.createElement("script");
+    script.src = chrome.extension.getURL(filename);
+    return document.head.appendChild(script);
+  };
 
   window.stop();
 
@@ -20,10 +27,12 @@
     newPage = document.importNode(page.documentElement, true);
     script = newPage.querySelector("script[src^='/js/core.js']");
     if (script != null) {
-      script.setAttribute("src", chrome.extension.getURL("/scripts/core.js"));
+      script.src = "";
     }
     document.replaceChild(newPage, document.documentElement);
-    return page = null;
+    page = null;
+    injectScript("scripts/conversation.js");
+    return injectScript("scripts/core.js");
   };
 
   xhr.send();

@@ -21,6 +21,6 @@
     }
   ],
   "web_accessible_resources": [
-    "scripts/core.js"
+    "scripts/*.js"
   ]
 }

@@ -1,3 +1,8 @@
+injectScript = ( filename ) ->
+	script = document.createElement "script"
+	script.src = chrome.extension.getURL filename
+	document.head.appendChild script
+
 # Replace `/js/core.js` script with our own version with deeply integrated
 # changes.
 window.stop()
@@ -17,9 +22,12 @@ xhr.onload = ->
 	newPage = document.importNode page.documentElement, true
 
 	script = newPage.querySelector "script[src^='/js/core.js']"
-	script?.setAttribute "src", chrome.extension.getURL "/scripts/core.js"
+	script?.src = ""
 
 	document.replaceChild newPage, document.documentElement
 	page = null
+
+	injectScript "scripts/conversation.js"
+	injectScript "scripts/core.js"
 
 xhr.send()
