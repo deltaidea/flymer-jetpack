@@ -12,8 +12,8 @@
     query = name.substring(1, name.length);
 
     /**
-     * @param {Object} results
-     * @return {?}
+    	 * @param {Object} results
+    	 * @return {?}
      */
     makeArray = function(results) {
 
@@ -90,7 +90,7 @@
     respond = {};
 
     /**
-     * @return {undefined}
+    	 * @return {undefined}
      */
     callMedia = function() {
       applyMedia(true);
@@ -126,7 +126,7 @@
       requestQueue = [];
 
       /**
-       * @return {undefined}
+      		 * @return {undefined}
        */
       ripCSS = function() {
 
@@ -163,7 +163,7 @@
       };
 
       /**
-       * @return {undefined}
+      		 * @return {undefined}
        */
       makeRequests = function() {
         var thisRequest;
@@ -182,10 +182,10 @@
       };
 
       /**
-       * @param {string} styles
-       * @param {string} href
-       * @param {(number|string)} media
-       * @return {undefined}
+      		 * @param {string} styles
+      		 * @param {string} href
+      		 * @param {(number|string)} media
+      		 * @return {undefined}
        */
       translate = function(styles, href, media) {
         var f, fullq, i, includes, len, part, ql, rawParams, repUrls, useMedia;
@@ -193,8 +193,8 @@
         ql = includes && includes.length || 0;
 
         /**
-         * @param {string} css
-         * @return {?}
+        			 * @param {string} css
+        			 * @return {?}
          */
         repUrls = function(css) {
           return css.replace(/(url\()['"]?([^\/\)'"][^:\)'"]+)['"]?(\))/g, '$1' + href + '$2$3');
@@ -248,7 +248,7 @@
       };
 
       /**
-       * @return {?}
+      		 * @return {?}
        */
       getemValue = function() {
         var body, container, fakeUsed, style;
@@ -277,8 +277,8 @@
       };
 
       /**
-       * @param {Object} options
-       * @return {?}
+      		 * @param {Object} options
+      		 * @return {?}
        */
       applyMedia = function(options) {
 
@@ -368,9 +368,9 @@
       };
 
       /**
-       * @param {?} url
-       * @param {Function} callback
-       * @return {undefined}
+      		 * @param {?} url
+      		 * @param {Function} callback
+      		 * @return {undefined}
        */
       ajax = function(url, callback) {
         var req;
@@ -379,7 +379,7 @@
           req.open('GeT', url, true);
 
           /**
-           * @return {undefined}
+          				 * @return {undefined}
            */
           req.onreadystatechange = function() {
             if (!(4 !== req.readyState)) {
@@ -429,14 +429,14 @@
   if (!window.getComputedStyle) {
 
     /**
-     * @param {(element|null)} element
-     * @return {(CSSStyleDeclaration|null)}
+    	 * @param {(element|null)} element
+    	 * @return {(CSSStyleDeclaration|null)}
      */
     window.getComputedStyle = function(element) {
 
       /**
-       * @param {string} text
-       * @return {?}
+      		 * @param {string} text
+      		 * @return {?}
        */
       this.getPropertyValue = function(text) {
 
@@ -466,8 +466,8 @@
   if (!document.getElementsByClassName) {
 
     /**
-     * @param {string} e
-     * @return {NodeList}
+    	 * @param {string} e
+    	 * @return {NodeList}
      */
     document.getElementsByClassName = function(e) {
 
@@ -503,7 +503,7 @@
   if (!String.prototype.trim) {
 
     /**
-     * @return {string}
+    	 * @return {string}
      */
     String.prototype.trim = function() {
       return this.replace(/^\s+|\s+$/g, '');
@@ -513,7 +513,7 @@
   if (!Date.now) {
 
     /**
-     * @return {number}
+    	 * @return {number}
      */
     Date.now = function() {
       return +(new Date);
@@ -523,13 +523,13 @@
   if (!Function.prototype.bind) {
 
     /**
-     * @param {(Object|null|undefined)} oThis
-     * @return {Function}
+    	 * @param {(Object|null|undefined)} oThis
+    	 * @return {Function}
      */
     Function.prototype.bind = function(oThis) {
 
       /**
-       * @return {?}
+      		 * @return {?}
        */
       var args, fBound, fNOP, fToBind;
       fBound = function() {
@@ -537,7 +537,7 @@
       };
 
       /**
-       * @return {undefined}
+      		 * @return {undefined}
        */
       fNOP = function() {};
       if ('function' !== typeof this) {
@@ -572,7 +572,7 @@
     return function(func) {
 
       /**
-       * @return {undefined}
+      		 * @return {undefined}
        */
       var G, I, add, doc, init, poll, pre, rem, root, win;
       poll = function() {
@@ -588,8 +588,8 @@
       };
 
       /**
-       * @param {event} e
-       * @return {undefined}
+      		 * @param {event} e
+      		 * @return {undefined}
        */
       init = function(e) {
         if ('readystatechange' !== e.type || 'complete' === doc.readyState) {
@@ -767,7 +767,7 @@
       }
 
       /**
-       * @return {undefined}
+      		 * @return {undefined}
        */
       xmlhttp.onreadystatechange = function() {
         var sjax_status;
@@ -953,7 +953,7 @@
       if (script.readyState) {
 
         /**
-         * @return {undefined}
+        			 * @return {undefined}
          */
         script.onreadystatechange = function() {
           if ('loaded' === script.readyState || 'complete' === script.readyState) {
@@ -966,7 +966,7 @@
       } else {
 
         /**
-         * @return {undefined}
+        			 * @return {undefined}
          */
         script.onload = function() {
           fncCallback();
@@ -1043,7 +1043,7 @@
       this.Z = (d = B.style.get(this.l, 'height')) ? parseInt(d) : this.l.clientHeight;
 
       /**
-       * @return {undefined}
+      		 * @return {undefined}
        */
       this.refresh = function() {
         var maxlength;
@@ -1101,8 +1101,8 @@
       JSON3 = 'object' === typeof exports && exports;
 
       /**
-       * @param {string} name
-       * @return {?}
+      		 * @param {string} name
+      		 * @return {?}
        */
       has = function(name) {
         var json_parse, l, n, parseSupported, s, stringify, stringifySupported, t, value;
@@ -1225,9 +1225,9 @@
           clt = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
 
           /**
-           * @param {number} n
-           * @param {number} value
-           * @return {?}
+          				 * @param {number} n
+          				 * @param {number} value
+          				 * @return {?}
            */
           pad = function(n, value) {
             return clt[value] + 365 * (n - 1970) + floor((n - 1969 + (value = +(1 < value))) / 4) - floor((n - 1901 + value) / 100) + floor((n - 1601 + value) / 400);
@@ -1236,8 +1236,8 @@
         if (!(isProperty = {}.hasOwnProperty)) {
 
           /**
-           * @param {string} key
-           * @return {?}
+          				 * @param {string} key
+          				 * @return {?}
            */
           isProperty = function(key) {
             var constructor, obj;
@@ -1250,8 +1250,8 @@
             if (obj.toString !== getClass) {
 
               /**
-               * @param {boolean} key
-               * @return {?}
+              						 * @param {boolean} key
+              						 * @return {?}
                */
               isProperty = function(key) {
                 var original;
@@ -1269,8 +1269,8 @@
               constructor = obj.constructor;
 
               /**
-               * @param {string} key
-               * @return {?}
+              						 * @param {string} key
+              						 * @return {?}
                */
               isProperty = function(key) {
                 var parent;
@@ -1292,9 +1292,9 @@
         };
 
         /**
-         * @param {?} object
-         * @param {Function} callback
-         * @return {undefined}
+        			 * @param {?} object
+        			 * @param {Function} callback
+        			 * @return {undefined}
          */
         foreach = function(object, callback) {
 
@@ -1368,9 +1368,9 @@
             members = 'valueOf toString toLocaleString propertyIsenumerable isPrototypeOf hasOwnProperty constructor'.split(' ');
 
             /**
-             * @param {?} object
-             * @param {Function} callback
-             * @return {undefined}
+            					 * @param {?} object
+            					 * @param {Function} callback
+            					 * @return {undefined}
              */
             foreach = function(object, callback) {
 
@@ -1417,17 +1417,17 @@
           };
 
           /**
-           * @param {number} opt_attributes
-           * @param {number} value
-           * @return {?}
+          				 * @param {number} opt_attributes
+          				 * @param {number} value
+          				 * @return {?}
            */
           toPaddedString = function(opt_attributes, value) {
             return ('000000' + (value || 0)).slice(-opt_attributes);
           };
 
           /**
-           * @param {string} value
-           * @return {?}
+          				 * @param {string} value
+          				 * @return {?}
            */
           quote = function(value) {
 
@@ -1480,14 +1480,14 @@
           };
 
           /**
-           * @param {number} property
-           * @param {string} object
-           * @param {Function} callback
-           * @param {number} properties
-           * @param {boolean} whitespace
-           * @param {string} indentation
-           * @param {Array} stack
-           * @return {?}
+          				 * @param {number} property
+          				 * @param {string} object
+          				 * @param {Function} callback
+          				 * @param {number} properties
+          				 * @param {boolean} whitespace
+          				 * @param {string} indentation
+          				 * @param {Array} stack
+          				 * @return {?}
            */
           serialize = function(property, object, callback, properties, whitespace, indentation, stack) {
             var D, date, element, hasMembers, hours, minutes, pdataOld, results, udataCur, value, width;
@@ -1640,10 +1640,10 @@
           };
 
           /**
-           * @param {?} source
-           * @param {(Function|string)} a
-           * @param {string} width
-           * @return {?}
+          				 * @param {?} source
+          				 * @param {(Function|string)} a
+          				 * @param {string} width
+          				 * @return {?}
            */
           JSON3.stringify = function(source, a, width) {
             var ai, al, properties, restoreScript, value, whitespace;
@@ -1715,7 +1715,7 @@
           path = void 0;
 
           /**
-           * @return {undefined}
+          				 * @return {undefined}
            */
           abort = function() {
 
@@ -1725,7 +1725,7 @@
           };
 
           /**
-           * @return {?}
+          				 * @return {?}
            */
           lex = function() {
             var character, j, len, match, n, result, template;
@@ -1942,8 +1942,8 @@
           };
 
           /**
-           * @param {string} value
-           * @return {?}
+          				 * @param {string} value
+          				 * @return {?}
            */
           get = function(value) {
             var n, results;
@@ -2014,10 +2014,10 @@
           };
 
           /**
-           * @param {Object} source
-           * @param {string} property
-           * @param {Function} element
-           * @return {undefined}
+          				 * @param {Object} source
+          				 * @param {string} property
+          				 * @param {Function} element
+          				 * @return {undefined}
            */
           update = function(source, property, element) {
             element = walk(source, property, element);
@@ -2031,10 +2031,10 @@
           };
 
           /**
-           * @param {Object} source
-           * @param {string} property
-           * @param {Function} callback
-           * @return {?}
+          				 * @param {Object} source
+          				 * @param {string} property
+          				 * @param {Function} callback
+          				 * @return {?}
            */
           walk = function(source, property, callback) {
             var length, value;
@@ -2056,9 +2056,9 @@
           };
 
           /**
-           * @param {Object} v02
-           * @param {Function} callback
-           * @return {?}
+          				 * @param {Object} v02
+          				 * @param {Function} callback
+          				 * @return {?}
            */
           JSON3.parse = function(v02, callback) {
             var result, value;
@@ -2112,16 +2112,16 @@
     /** @type {string} */
 
     /**
-     * @return {undefined}
+    	 * @return {undefined}
      */
     initialize = function() {
       var failuresLink, i, m, n;
       failuresLink = d('#note-input');
 
       /**
-       * @param {element} container
-       * @param {element} el
-       * @return {?}
+      		 * @param {element} container
+      		 * @param {element} el
+      		 * @return {?}
        */
       initialize = function(container, el) {
         return function(e) {
@@ -2164,7 +2164,7 @@
     };
 
     /**
-     * @return {undefined}
+    	 * @return {undefined}
      */
     buildDeck = function() {
       event.add(document, 'keydown', function(e) {
@@ -2181,16 +2181,16 @@
     };
 
     /**
-     * @return {undefined}
+    	 * @return {undefined}
      */
     add = function() {
       var callback, func, i, name, values, valuesLen;
       values = d('.placeholder');
 
       /**
-       * @param {element} name
-       * @param {?} obj
-       * @return {?}
+      		 * @param {element} name
+      		 * @param {?} obj
+      		 * @return {?}
        */
       func = function(name, obj) {
         return function() {
@@ -2203,9 +2203,9 @@
       };
 
       /**
-       * @param {element} o
-       * @param {?} url
-       * @return {?}
+      		 * @param {element} o
+      		 * @param {?} url
+      		 * @return {?}
        */
       callback = function(o, url) {
         return function() {
@@ -2231,7 +2231,7 @@
     };
 
     /**
-     * @return {undefined}
+    	 * @return {undefined}
      */
     addEvent = function() {
 
@@ -2246,8 +2246,8 @@
       j = context.length;
 
       /**
-       * @param {StyleSheet} a
-       * @return {?}
+      		 * @param {StyleSheet} a
+      		 * @return {?}
        */
       fn = function(a) {
         return function(e) {
@@ -2270,7 +2270,7 @@
     };
 
     /**
-     * @return {undefined}
+    	 * @return {undefined}
      */
     handler = function() {
       var container, element, token;
@@ -2292,8 +2292,8 @@
     };
 
     /**
-     * @param {string} elem
-     * @return {undefined}
+    	 * @param {string} elem
+    	 * @return {undefined}
      */
     next = function(elem) {
       var i, values, valuesLen;
@@ -2320,7 +2320,7 @@
     };
 
     /**
-     * @return {undefined}
+    	 * @return {undefined}
      */
     test = function() {
       var complete, e, that;
@@ -2328,8 +2328,8 @@
       that = d('#burn-cancel');
 
       /**
-       * @param {?} e
-       * @return {?}
+      		 * @param {?} e
+      		 * @return {?}
        */
       next = function(e) {
         return function() {
@@ -2344,8 +2344,8 @@
       };
 
       /**
-       * @param {?} e
-       * @return {?}
+      		 * @param {?} e
+      		 * @return {?}
        */
       complete = function(e) {
         return function() {
@@ -2373,7 +2373,7 @@
     };
 
     /**
-     * @return {undefined}
+    	 * @return {undefined}
      */
     f = function() {
       var timeout;
@@ -2386,8 +2386,8 @@
     };
 
     /**
-     * @param {(Function|string)} data
-     * @return {undefined}
+    	 * @param {(Function|string)} data
+    	 * @return {undefined}
      */
     apply = function(data) {
       if (!data) {
@@ -2401,8 +2401,8 @@
     };
 
     /**
-     * @param {string} type
-     * @return {undefined}
+    	 * @param {string} type
+    	 * @return {undefined}
      */
     flush = function(type) {
       if (!type) {
@@ -2444,15 +2444,15 @@
     };
 
     /**
-     * @return {undefined}
+    	 * @return {undefined}
      */
     setup = function() {
       var init, token;
       token = d('#note-input');
 
       /**
-       * @param {Object} e
-       * @return {undefined}
+      		 * @param {Object} e
+      		 * @return {undefined}
        */
       init = function(e) {
         if (17 === e.keyCode) {
@@ -2485,8 +2485,8 @@
     };
 
     /**
-     * @param {element} element
-     * @return {undefined}
+    	 * @param {element} element
+    	 * @return {undefined}
      */
     callback = function(element) {
       var evt;
@@ -2508,8 +2508,8 @@
     };
 
     /**
-     * @param {Object} e
-     * @return {undefined}
+    	 * @param {Object} e
+    	 * @return {undefined}
      */
     update = function(e) {
       var el;
@@ -2531,15 +2531,15 @@
     };
 
     /**
-     * @param {?} string
-     * @return {?}
+    	 * @param {?} string
+    	 * @return {?}
      */
     quote = function(string) {
       return target.ba(string).trim().replace(/\n/g, '<br>');
     };
 
     /**
-     * @return {undefined}
+    	 * @return {undefined}
      */
     submit = function() {
 
@@ -2552,9 +2552,9 @@
     };
 
     /**
-     * @param {?} options
-     * @param {?} deepDataAndEvents
-     * @return {undefined}
+    	 * @param {?} options
+    	 * @param {?} deepDataAndEvents
+    	 * @return {undefined}
      */
     value = function(options, deepDataAndEvents) {
       start(options, data.H, deepDataAndEvents);
@@ -2562,8 +2562,8 @@
     };
 
     /**
-     * @param {string} val
-     * @return {undefined}
+    	 * @param {string} val
+    	 * @return {undefined}
      */
     fn = function(val) {
       if (!val) {
@@ -2582,8 +2582,8 @@
     };
 
     /**
-     * @param {?} src
-     * @return {undefined}
+    	 * @param {?} src
+    	 * @return {undefined}
      */
     debug = function(src) {
       var j, l2;
@@ -2605,8 +2605,8 @@
     };
 
     /**
-     * @param {?} obj
-     * @return {undefined}
+    	 * @param {?} obj
+    	 * @return {undefined}
      */
     i = function(obj) {
       var l;
@@ -2628,16 +2628,16 @@
     };
 
     /**
-     * @return {undefined}
+    	 * @return {undefined}
      */
     runTest = function() {
       var elems, init, length, result;
       elems = d('.np');
 
       /**
-       * @param {Object} p
-       * @param {error} options
-       * @return {?}
+      		 * @param {Object} p
+      		 * @param {error} options
+      		 * @return {?}
        */
       init = function(p, options) {
         var done;
@@ -2656,8 +2656,8 @@
       };
 
       /**
-       * @param {element} input
-       * @return {?}
+      		 * @param {element} input
+      		 * @return {?}
        */
       fn = function(input) {
         return function() {
@@ -2700,15 +2700,15 @@
     };
 
     /**
-     * @return {undefined}
+    	 * @return {undefined}
      */
     init = function() {
       var click, items, valuesLen;
       items = d('.ks');
 
       /**
-       * @param {Object} e
-       * @return {undefined}
+      		 * @param {Object} e
+      		 * @return {undefined}
        */
       click = function(e) {
         if (e.ctrlKey || e.metaKey) {
@@ -2722,8 +2722,8 @@
       };
 
       /**
-       * @param {element} key
-       * @return {?}
+      		 * @param {element} key
+      		 * @return {?}
        */
       fn = function(key) {
         return function(e) {
@@ -2762,7 +2762,7 @@
     };
 
     /**
-     * @return {undefined}
+    	 * @return {undefined}
      */
     load = function() {
       var node;
@@ -2770,8 +2770,8 @@
       if (node) {
 
         /**
-         * @param {string} text
-         * @return {undefined}
+        			 * @param {string} text
+        			 * @return {undefined}
          */
         load = function(text) {
           if ('' !== text) {
@@ -2790,15 +2790,15 @@
     };
 
     /**
-     * @return {undefined}
+    	 * @return {undefined}
      */
     show = function() {
       var values, valuesLen;
       values = d('.form-submit');
 
       /**
-       * @param {Object} key
-       * @return {undefined}
+      		 * @param {Object} key
+      		 * @return {undefined}
        */
       fn = function(key) {
         key = event.u(key);
@@ -2806,8 +2806,8 @@
       };
 
       /**
-       * @param {Object} e
-       * @return {?}
+      		 * @param {Object} e
+      		 * @return {?}
        */
       callback = function(e) {
         var evt;
@@ -2837,8 +2837,8 @@
     };
 
     /**
-     * @param {Object} options
-     * @return {undefined}
+    	 * @param {Object} options
+    	 * @return {undefined}
      */
     build = function(options) {
       var character, file, hash, il, input;
@@ -2867,8 +2867,8 @@
     };
 
     /**
-     * @param {Object} options
-     * @return {undefined}
+    	 * @param {Object} options
+    	 * @return {undefined}
      */
     cb = function(options) {
       if (!options.e) {
@@ -2884,10 +2884,10 @@
     };
 
     /**
-     * @param {Object} options
-     * @param {string} id
-     * @param {number} value
-     * @return {undefined}
+    	 * @param {Object} options
+    	 * @param {string} id
+    	 * @param {number} value
+    	 * @return {undefined}
      */
     start = function(options, id, value) {
       var elem;
@@ -2913,7 +2913,7 @@
     };
 
     /**
-     * @return {?}
+    	 * @return {?}
      */
     emptyHandler = function() {
       return false;
@@ -3519,7 +3519,7 @@
         this.Q = r;
 
         /**
-         * @return {undefined}
+        			 * @return {undefined}
          */
         e.onfocus = function() {
 
@@ -3794,14 +3794,14 @@
         comment = d('#cmessage');
 
         /**
-         * @param {undefined} value
-         * @return {undefined}
+        			 * @param {undefined} value
+        			 * @return {undefined}
          */
         callback = function(value) {
 
           /**
-           * @param {element} d
-           * @return {undefined}
+          				 * @param {element} d
+          				 * @return {undefined}
            */
           callback = function(d) {
             d = event.u(d);
