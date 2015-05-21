@@ -35,17 +35,6 @@
     };
     document.getElementById("content").setAttribute("id", "nope-nope-nope");
     textarea = window["reply-input"] || window["note-input"];
-    inject(function() {
-      return setTimeout(function() {
-        return ["#trending-full", ".tlayout"].forEach(function(selector) {
-          var el, _ref;
-          el = document.querySelector(selector);
-          if ((el != null ? (_ref = el.style) != null ? _ref.display : void 0 : void 0) === "none") {
-            return el.style.setProperty("display", "block", "important");
-          }
-        });
-      }, 100);
-    });
     _ref = document.querySelectorAll(".linkB");
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       link = _ref[_i];

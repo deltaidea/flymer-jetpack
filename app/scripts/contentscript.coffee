@@ -37,15 +37,6 @@ xhr.onload = ->
 	# This is the textarea on this page if there is one.
 	textarea = window["reply-input"] or window["note-input"]
 
-	# Show these tags if AdBlock blocks them.
-	inject ->
-		setTimeout ->
-			[ "#trending-full", ".tlayout" ].forEach ( selector ) ->
-				el = document.querySelector selector
-				if el?.style?.display is "none"
-					el.style.setProperty "display", "block", "important"
-		, 100
-
 	# Show full message history by default.
 	for link in document.querySelectorAll ".linkB"
 		link.href = link.href.replace "#new", "&full=1#new"
