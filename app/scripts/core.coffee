@@ -609,35 +609,6 @@ B.N = do ->
 				win[add] pre + 'load', init, false
 		return
 B.event =
-	add: if 'undefined' != typeof addEventListener then ((element, event, fn) ->
-		element.addEventListener event, fn, false
-		return
-	) else ((element, event, fn) ->
-		element.attachEvent 'on' + event, fn
-		return
-	)
-	remove: if 'undefined' != typeof removeEventListener then ((d, e, action) ->
-		d.removeEventListener e, action, false
-		return
-	) else ((o, e, listener) ->
-		o.detachEvent 'on' + e, listener
-		return
-	)
-	u: if 'undefined' != typeof addEventListener then ((arg) ->
-		arg.target
-	) else ((ast) ->
-		ast.srcElement
-	)
-	preventDefault: if 'undefined' != typeof addEventListener then ((ast) ->
-		ast.preventDefault()
-		return
-	) else ((ast) ->
-
-		###* @type {boolean} ###
-
-		ast.returnValue = false
-		return
-	)
 	oa: (e) ->
 
 		###* @type {boolean} ###
@@ -971,7 +942,7 @@ B.G =
 		i = 0
 		valuesLen = values.length
 		while i < valuesLen
-			B.event.add attribute, values[i], one
+			attribute.addEventListener values[i], one, false
 			i++
 		return
 	ba: (msg) ->
@@ -1651,7 +1622,7 @@ do ->
 					###* @type {null} ###
 
 					i = path = item
-					throw Syntaxerror()
+					throw SyntaxError()
 					return
 
 				###*
@@ -2015,7 +1986,7 @@ do ->
 
 				el.value = if txt then txt + ' ' + tag + ' ' else tag + ' '
 				callback el
-				event.preventDefault e
+				e.preventDefault()
 				return
 
 		if failuresLink
@@ -2031,7 +2002,7 @@ do ->
 			i = 0
 			n = m.length
 			while i < n
-				event.add m[i], 'click', initialize(m[i], failuresLink)
+				m[i].addEventListener 'click', initialize(m[i], failuresLink), false
 				i++
 		return
 
@@ -2040,15 +2011,16 @@ do ->
 	###
 
 	buildDeck = ->
-		event.add document, 'keydown', (e) ->
+		document.addEventListener 'keydown', (e) ->
 			if 13 == e.keyCode
-				t = event.u(e)
+				t = e.target
 				if 'textarea' != t.nodeName.toLowerCase() and (t = target.t(t))
-					return event.preventDefault(e)
+					return e.preventDefault()
 					cb(t)
 					false
 
 			return
+		, false
 		return
 
 	###*
@@ -2095,7 +2067,7 @@ do ->
 				name = document.querySelector('#' + values[i].htmlFor)
 				setTimeout callback(name, values[i]), 100
 				target.J name, func(name, values[i])
-				event.add name, 'focus', func(name, values[i])
+				name.addEventListener 'focus', func(name, values[i]), false
 				i++
 		return
 
@@ -2130,7 +2102,7 @@ do ->
 			(e) ->
 				parts = a.href.split('#')
 				if parts[0] == window.location.href.split('#')[0]
-					event.preventDefault e
+					e.preventDefault()
 
 					###* @type {string} ###
 
@@ -2139,7 +2111,7 @@ do ->
 
 		while i < j
 			if context[i]
-				event.add context[i], 'click', fn(context[i])
+				context[i].addEventListener 'click', fn(context[i]), false
 			i++
 		return
 
@@ -2156,9 +2128,10 @@ do ->
 			if container
 				if token
 					if element == container
-						event.add token, 'focus', ->
+						token.addEventListener 'focus', ->
 							container.focus()
 							return
+						, false
 		return
 
 	###*
@@ -2248,7 +2221,7 @@ do ->
 		timeout = document.querySelector('#next')
 		if timeout
 			if timeout.offsetHeight
-				event.add document, 'keydown', update
+				document.addEventListener 'keydown', update, false
 		return
 
 	###*
@@ -2324,7 +2297,7 @@ do ->
 				if init.q
 					if 500 > Date.now() - (init.q)
 						token.value += '#'
-						callback event.u(e)
+						callback e.target
 
 						###* @type {number} ###
 
@@ -2347,7 +2320,7 @@ do ->
 			return
 
 		if token
-			event.add token, 'keyup', init
+			token.addEventListener 'keyup', init, false
 		return
 
 	###*
@@ -2385,7 +2358,7 @@ do ->
 			loop
 				if e.offsetHeight
 					if e.href
-						event.remove document, 'keydown', update
+						document.removeEventListener 'keydown', update, false
 						window.location = e.href
 				unless e = e.nextSibling
 					break
@@ -2565,8 +2538,8 @@ do ->
 			if e.ctrlKey or e.metaKey
 				if 13 == e.keyCode
 					event.oa e
-					event.preventDefault e
-					e = target.t(event.u(e))
+					e.preventDefault()
+					e = target.t(e.target)
 					cb e
 			return
 
@@ -2582,7 +2555,7 @@ do ->
 						if 13 == e.keyCode
 							cb target.t(key)
 				else
-					event.remove document, 'keydown', listener
+					document.removeEventListener 'keydown', listener, false
 				return
 
 		if 'undefined' == typeof items.length
@@ -2593,14 +2566,14 @@ do ->
 		if 1 == items.length
 			if items[0]
 				if items[0].offsetHeight
-					event.add document, 'keydown', fn(items[0])
+					document.addEventListener 'keydown', fn(items[0]), false
 
 		###* @type {number} ###
 
 		i = 0
 		valuesLen = items.length
 		while i < valuesLen
-			event.add items[i], 'keydown', click
+			items[i].addEventListener 'keydown', click, false
 			self.b items[i], 'ks'
 			i++
 		return
@@ -2618,7 +2591,7 @@ do ->
 		###
 
 		fn = (key) ->
-			key = event.u(key)
+			key = key.target
 			cb target.t(key)
 			return
 
@@ -2627,9 +2600,10 @@ do ->
 		# @return {?}
 		###
 
-		callback = (e) ->
-			evt = event.u(e)
-			event.preventDefault e
+		onSubmit = (e) ->
+			console.log arguments
+			evt = e.target
+			e.preventDefault()
 			cb evt
 			false
 
@@ -2648,8 +2622,8 @@ do ->
 			###* @type {function (): ?} ###
 
 			values[i].onclick = emptyHandler
-			event.add values[i], 'click', fn
-			event.add target.t(values[i]), 'submit', callback
+			values[i].addEventListener 'click', fn, false
+			target.t(values[i]).addEventListener 'submit', onSubmit, false
 			self.b values[i], 'form-submit'
 			i++
 		return
@@ -3483,7 +3457,7 @@ do ->
 		form: null
 		a: null
 		submit: ->
-			event.remove document, 'keydown', update
+			document.removeEventListener 'keydown', update, false
 			@form = document.querySelector('#' + @g)
 			@a = document.querySelector('#' + @f)
 
@@ -3584,13 +3558,13 @@ do ->
 				###
 
 				callback = (d) ->
-					d = event.u(d)
+					d = d.target
 					self.b d, 'invalid'
-					event.remove d, 'focus', callback
+					d.removeEventListener 'focus', callback, false
 					return
 
 				self.d value, 'invalid'
-				event.add value, 'focus', callback
+				value.addEventListener 'focus', callback, false
 				return
 
 			if !err.value.trim().length

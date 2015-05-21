@@ -625,28 +625,6 @@
   })();
 
   B.event = {
-    add: 'undefined' !== typeof addEventListener ? (function(element, event, fn) {
-      element.addEventListener(event, fn, false);
-    }) : (function(element, event, fn) {
-      element.attachEvent('on' + event, fn);
-    }),
-    remove: 'undefined' !== typeof removeEventListener ? (function(d, e, action) {
-      d.removeEventListener(e, action, false);
-    }) : (function(o, e, listener) {
-      o.detachEvent('on' + e, listener);
-    }),
-    u: 'undefined' !== typeof addEventListener ? (function(arg) {
-      return arg.target;
-    }) : (function(ast) {
-      return ast.srcElement;
-    }),
-    preventDefault: 'undefined' !== typeof addEventListener ? (function(ast) {
-      ast.preventDefault();
-    }) : (function(ast) {
-
-      /** @type {boolean} */
-      ast.returnValue = false;
-    }),
     oa: function(e) {
 
       /** @type {boolean} */
@@ -995,7 +973,7 @@
       i = 0;
       valuesLen = values.length;
       while (i < valuesLen) {
-        B.event.add(attribute, values[i], one);
+        attribute.addEventListener(values[i], one, false);
         i++;
       }
     },
@@ -1695,7 +1673,7 @@
 
             /** @type {null} */
             i = path = item;
-            throw Syntaxerror();
+            throw SyntaxError();
           };
 
           /**
@@ -2114,7 +2092,7 @@
           /** @type {string} */
           el.value = txt ? txt + ' ' + tag + ' ' : tag + ' ';
           callback(el);
-          event.preventDefault(e);
+          e.preventDefault();
         };
       };
       if (failuresLink) {
@@ -2131,7 +2109,7 @@
         i = 0;
         n = m.length;
         while (i < n) {
-          event.add(m[i], 'click', initialize(m[i], failuresLink));
+          m[i].addEventListener('click', initialize(m[i], failuresLink), false);
           i++;
         }
       }
@@ -2141,17 +2119,17 @@
     	 * @return {undefined}
      */
     buildDeck = function() {
-      event.add(document, 'keydown', function(e) {
+      document.addEventListener('keydown', function(e) {
         var t;
         if (13 === e.keyCode) {
-          t = event.u(e);
+          t = e.target;
           if ('textarea' !== t.nodeName.toLowerCase() && (t = target.t(t))) {
-            return event.preventDefault(e);
+            return e.preventDefault();
             cb(t);
             false;
           }
         }
-      });
+      }, false);
     };
 
     /**
@@ -2198,7 +2176,7 @@
           name = document.querySelector('#' + values[i].htmlFor);
           setTimeout(callback(name, values[i]), 100);
           target.J(name, func(name, values[i]));
-          event.add(name, 'focus', func(name, values[i]));
+          name.addEventListener('focus', func(name, values[i]), false);
           i++;
         }
       }
@@ -2228,7 +2206,7 @@
           var parts;
           parts = a.href.split('#');
           if (parts[0] === window.location.href.split('#')[0]) {
-            event.preventDefault(e);
+            e.preventDefault();
 
             /** @type {string} */
             window.location = parts[0] + (window.location.search ? '&' : '?') + 'go=1' + (parts[1] ? '#' + parts[1] : '');
@@ -2237,7 +2215,7 @@
       };
       while (i < j) {
         if (context[i]) {
-          event.add(context[i], 'click', fn(context[i]));
+          context[i].addEventListener('click', fn(context[i]), false);
         }
         i++;
       }
@@ -2256,9 +2234,9 @@
         if (container) {
           if (token) {
             if (element === container) {
-              event.add(token, 'focus', function() {
+              token.addEventListener('focus', function() {
                 container.focus();
-              });
+              }, false);
             }
           }
         }
@@ -2354,7 +2332,7 @@
       timeout = document.querySelector('#next');
       if (timeout) {
         if (timeout.offsetHeight) {
-          event.add(document, 'keydown', update);
+          document.addEventListener('keydown', update, false);
         }
       }
     };
@@ -2433,7 +2411,7 @@
           if (init.q) {
             if (500 > Date.now() - init.q) {
               token.value += '#';
-              callback(event.u(e));
+              callback(e.target);
 
               /** @type {number} */
               init.q = 0;
@@ -2454,7 +2432,7 @@
         }
       };
       if (token) {
-        event.add(token, 'keyup', init);
+        token.addEventListener('keyup', init, false);
       }
     };
 
@@ -2493,7 +2471,7 @@
         while (true) {
           if (e.offsetHeight) {
             if (e.href) {
-              event.remove(document, 'keydown', update);
+              document.removeEventListener('keydown', update, false);
               window.location = e.href;
             }
           }
@@ -2685,8 +2663,8 @@
         if (e.ctrlKey || e.metaKey) {
           if (13 === e.keyCode) {
             event.oa(e);
-            event.preventDefault(e);
-            e = target.t(event.u(e));
+            e.preventDefault();
+            e = target.t(e.target);
             cb(e);
           }
         }
@@ -2705,7 +2683,7 @@
               }
             }
           } else {
-            event.remove(document, 'keydown', listener);
+            document.removeEventListener('keydown', listener, false);
           }
         };
       };
@@ -2717,7 +2695,7 @@
       if (1 === items.length) {
         if (items[0]) {
           if (items[0].offsetHeight) {
-            event.add(document, 'keydown', fn(items[0]));
+            document.addEventListener('keydown', fn(items[0]), false);
           }
         }
       }
@@ -2726,7 +2704,7 @@
       i = 0;
       valuesLen = items.length;
       while (i < valuesLen) {
-        event.add(items[i], 'keydown', click);
+        items[i].addEventListener('keydown', click, false);
         self.b(items[i], 'ks');
         i++;
       }
@@ -2736,7 +2714,7 @@
     	 * @return {undefined}
      */
     show = function() {
-      var values, valuesLen;
+      var onSubmit, values, valuesLen;
       values = document.querySelectorAll('.form-submit');
 
       /**
@@ -2744,7 +2722,7 @@
       		 * @return {undefined}
        */
       fn = function(key) {
-        key = event.u(key);
+        key = key.target;
         cb(target.t(key));
       };
 
@@ -2752,10 +2730,11 @@
       		 * @param {Object} e
       		 * @return {?}
        */
-      callback = function(e) {
+      onSubmit = function(e) {
         var evt;
-        evt = event.u(e);
-        event.preventDefault(e);
+        console.log(arguments);
+        evt = e.target;
+        e.preventDefault();
         cb(evt);
         return false;
       };
@@ -2772,8 +2751,8 @@
 
         /** @type {function (): ?} */
         values[i].onclick = emptyHandler;
-        event.add(values[i], 'click', fn);
-        event.add(target.t(values[i]), 'submit', callback);
+        values[i].addEventListener('click', fn, false);
+        target.t(values[i]).addEventListener('submit', onSubmit, false);
         self.b(values[i], 'form-submit');
         i++;
       }
@@ -3643,7 +3622,7 @@
       form: null,
       a: null,
       submit: function() {
-        event.remove(document, 'keydown', update);
+        document.removeEventListener('keydown', update, false);
         this.form = document.querySelector('#' + this.g);
         this.a = document.querySelector('#' + this.f);
 
@@ -3747,12 +3726,12 @@
           				 * @return {undefined}
            */
           callback = function(d) {
-            d = event.u(d);
+            d = d.target;
             self.b(d, 'invalid');
-            event.remove(d, 'focus', callback);
+            d.removeEventListener('focus', callback, false);
           };
           self.d(value, 'invalid');
-          event.add(value, 'focus', callback);
+          value.addEventListener('focus', callback, false);
         };
         if (!err.value.trim().length) {
           callback(err);
