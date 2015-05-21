@@ -14,7 +14,7 @@
   };
 
   xhr.onload = function() {
-    var conversationId, inject, link, newPage, page, script, textarea, _i, _len, _ref, _ref1, _ref2, _ref3;
+    var conversationId, link, newPage, page, script, textarea, _i, _len, _ref, _ref1, _ref2, _ref3;
     page = document.implementation.createHTMLDocument("");
     page.documentElement.innerHTML = this.responseText;
     newPage = document.importNode(page.documentElement, true);
@@ -24,15 +24,6 @@
     }
     document.replaceChild(newPage, document.documentElement);
     page = null;
-    inject = function(content) {
-      if (typeof content === "function") {
-        content = "(" + content + ")()";
-      }
-      script = document.createElement("script");
-      script.type = "text/javascript";
-      script.textContent = content;
-      return document.head.appendChild(script);
-    };
     document.getElementById("content").setAttribute("id", "nope-nope-nope");
     textarea = window["reply-input"] || window["note-input"];
     _ref = document.querySelectorAll(".linkB");

@@ -22,15 +22,6 @@ xhr.onload = ->
 	document.replaceChild newPage, document.documentElement
 	page = null
 
-	# Helper function, takes code and injects it to the page context.
-	inject = ( content ) ->
-		if typeof content is "function"
-			content = "(" + content + ")()"
-		script = document.createElement "script"
-		script.type = "text/javascript"
-		script.textContent = content
-		document.head.appendChild script
-
 	# Disable removing content on "/bin" page.
 	document.getElementById( "content" ).setAttribute "id", "nope-nope-nope"
 
