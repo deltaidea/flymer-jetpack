@@ -628,8 +628,8 @@ B.event =
 	) else ((ast) ->
 		ast.srcElement
 	)
-	prEventDefault: if 'undefined' != typeof addEventListener then ((ast) ->
-		ast.prEventDefault()
+	preventDefault: if 'undefined' != typeof addEventListener then ((ast) ->
+		ast.preventDefault()
 		return
 	) else ((ast) ->
 
@@ -2015,7 +2015,7 @@ do ->
 
 				el.value = if txt then txt + ' ' + tag + ' ' else tag + ' '
 				callback el
-				event.prEventDefault e
+				event.preventDefault e
 				return
 
 		if failuresLink
@@ -2044,7 +2044,7 @@ do ->
 			if 13 == e.keyCode
 				t = event.u(e)
 				if 'textarea' != t.nodeName.toLowerCase() and (t = target.t(t))
-					return event.prEventDefault(e)
+					return event.preventDefault(e)
 					cb(t)
 					false
 
@@ -2130,7 +2130,7 @@ do ->
 			(e) ->
 				parts = a.href.split('#')
 				if parts[0] == window.location.href.split('#')[0]
-					event.prEventDefault e
+					event.preventDefault e
 
 					###* @type {string} ###
 
@@ -2565,7 +2565,7 @@ do ->
 			if e.ctrlKey or e.metaKey
 				if 13 == e.keyCode
 					event.oa e
-					event.prEventDefault e
+					event.preventDefault e
 					e = target.t(event.u(e))
 					cb e
 			return
@@ -2629,7 +2629,7 @@ do ->
 
 		callback = (e) ->
 			evt = event.u(e)
-			event.prEventDefault e
+			event.preventDefault e
 			cb evt
 			false
 

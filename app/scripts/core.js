@@ -640,8 +640,8 @@
     }) : (function(ast) {
       return ast.srcElement;
     }),
-    prEventDefault: 'undefined' !== typeof addEventListener ? (function(ast) {
-      ast.prEventDefault();
+    preventDefault: 'undefined' !== typeof addEventListener ? (function(ast) {
+      ast.preventDefault();
     }) : (function(ast) {
 
       /** @type {boolean} */
@@ -2114,7 +2114,7 @@
           /** @type {string} */
           el.value = txt ? txt + ' ' + tag + ' ' : tag + ' ';
           callback(el);
-          event.prEventDefault(e);
+          event.preventDefault(e);
         };
       };
       if (failuresLink) {
@@ -2146,7 +2146,7 @@
         if (13 === e.keyCode) {
           t = event.u(e);
           if ('textarea' !== t.nodeName.toLowerCase() && (t = target.t(t))) {
-            return event.prEventDefault(e);
+            return event.preventDefault(e);
             cb(t);
             false;
           }
@@ -2228,7 +2228,7 @@
           var parts;
           parts = a.href.split('#');
           if (parts[0] === window.location.href.split('#')[0]) {
-            event.prEventDefault(e);
+            event.preventDefault(e);
 
             /** @type {string} */
             window.location = parts[0] + (window.location.search ? '&' : '?') + 'go=1' + (parts[1] ? '#' + parts[1] : '');
@@ -2685,7 +2685,7 @@
         if (e.ctrlKey || e.metaKey) {
           if (13 === e.keyCode) {
             event.oa(e);
-            event.prEventDefault(e);
+            event.preventDefault(e);
             e = target.t(event.u(e));
             cb(e);
           }
@@ -2755,7 +2755,7 @@
       callback = function(e) {
         var evt;
         evt = event.u(e);
-        event.prEventDefault(e);
+        event.preventDefault(e);
         cb(evt);
         return false;
       };
