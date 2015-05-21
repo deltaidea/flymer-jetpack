@@ -13,47 +13,6 @@ document.addEventListener "keyup", ( e ) ->
 ( window["reply-input"] or window["note-input"] )?.value =
 	localStorage[ conversationId ] ? ""
 
-###*
-# @param {string} name
-# @return {?}
-###
-
-d = (name) ->
-	query = name.substring(1, name.length)
-
-	###*
-	# @param {Object} results
-	# @return {?}
-	###
-
-	makeArray = (results) ->
-
-		###* @type {Array} ###
-
-		ret = []
-		if !results
-			return ret
-		if 'undefined' == typeof results.length
-			return [ results ]
-
-		###* @type {number} ###
-
-		i = 0
-		l = results.length
-		while i < l
-			ret.push results[i]
-			i++
-		ret
-
-	switch name.charAt(0)
-		when '#'
-			return document.getElementById(query)
-		when '.'
-			return makeArray(document.getElementsByClassName(query))
-		else
-			return makeArray(document.getElementsByTagName(name))
-	return
-
 if @top.location != @location
 
 	###* @type {(Location|null)} ###
@@ -2031,7 +1990,7 @@ do ->
 	###
 
 	initialize = ->
-		failuresLink = d('#note-input')
+		failuresLink = document.querySelector('#note-input')
 
 		###*
 		# @param {element} container
@@ -2060,12 +2019,12 @@ do ->
 				return
 
 		if failuresLink
-			m = d('#trending-full')
-			i = d('#trending-mob')
+			m = document.querySelector('#trending-full')
+			i = document.querySelector('#trending-mob')
 			if m
 				if i
 					i.innerHTML = m.innerHTML
-			m = d('.trnd')
+			m = document.querySelectorAll('.trnd')
 
 			###* @type {number} ###
 
@@ -2097,7 +2056,7 @@ do ->
 	###
 
 	add = ->
-		values = d('.placeholder')
+		values = document.querySelectorAll('.placeholder')
 
 		###*
 		# @param {element} name
@@ -2133,7 +2092,7 @@ do ->
 			valuesLen = values.length
 			name = undefined
 			while i < valuesLen
-				name = d('#' + values[i].htmlFor)
+				name = document.querySelector('#' + values[i].htmlFor)
 				setTimeout callback(name, values[i]), 100
 				target.J name, func(name, values[i])
 				event.add name, 'focus', func(name, values[i])
@@ -2149,9 +2108,9 @@ do ->
 		###* @type {Array} ###
 
 		context = [
-			d('#menu-replies')
-			d('#link-replies')
-			d('#next-reply')
+			document.querySelector('#menu-replies')
+			document.querySelector('#link-replies')
+			document.querySelector('#next-reply')
 		]
 
 		###* @type {number} ###
@@ -2189,11 +2148,11 @@ do ->
 	###
 
 	handler = ->
-		element = d('.focused')[0]
+		element = document.querySelectorAll('.focused')[0]
 		if element
 			element.focus()
-			container = d('#reply-input')
-			token = d('#new')
+			container = document.querySelector('#reply-input')
+			token = document.querySelector('#new')
 			if container
 				if token
 					if element == container
@@ -2211,7 +2170,7 @@ do ->
 		show()
 		runTest()
 		init()
-		values = d('.autosize')
+		values = document.querySelectorAll('.autosize')
 		if 'undefined' == typeof values.length
 
 			###* @type {Array} ###
@@ -2235,8 +2194,8 @@ do ->
 	###
 
 	test = ->
-		e = d('#burnit')
-		that = d('#burn-cancel')
+		e = document.querySelector('#burnit')
+		that = document.querySelector('#burn-cancel')
 
 		###*
 		# @param {?} e
@@ -2245,11 +2204,11 @@ do ->
 
 		next = (e) ->
 			->
-				debug d('#reply')
-				i d('#burn-box')
-				debug d('#burnit-show')
-				i d('#burnit-cancel')
-				d('#reply-input').blur()
+				debug document.querySelector('#reply')
+				i document.querySelector('#burn-box')
+				debug document.querySelector('#burnit-show')
+				i document.querySelector('#burnit-cancel')
+				document.querySelector('#reply-input').blur()
 				e.onclick = complete(e)
 				false
 
@@ -2260,12 +2219,12 @@ do ->
 
 		complete = (e) ->
 			->
-				debug d('#burn-box')
-				i d('#reply')
-				debug d('#burnit-cancel')
-				i d('#burnit-show')
+				debug document.querySelector('#burn-box')
+				i document.querySelector('#reply')
+				debug document.querySelector('#burnit-cancel')
+				i document.querySelector('#burnit-show')
 				e.onclick = next(e)
-				obj = d('#reply-input')
+				obj = document.querySelector('#reply-input')
 				id = undefined
 				id = obj.value
 
@@ -2286,7 +2245,7 @@ do ->
 	###
 
 	f = ->
-		timeout = d('#next')
+		timeout = document.querySelector('#next')
 		if timeout
 			if timeout.offsetHeight
 				event.add document, 'keydown', update
@@ -2304,7 +2263,7 @@ do ->
 
 			data = 'launch'
 		flush data
-		i d('#next')
+		i document.querySelector('#next')
 		f()
 		return
 
@@ -2335,17 +2294,17 @@ do ->
 		data.next.O = type
 		switch type
 			when 'reply'
-				debug d('#next-bin')
-				debug d('#next-launch')
-				i d('#next-reply')
+				debug document.querySelector('#next-bin')
+				debug document.querySelector('#next-launch')
+				i document.querySelector('#next-reply')
 			when 'launch'
-				debug d('#next-bin')
-				debug d('#next-reply')
-				i d('#next-launch')
+				debug document.querySelector('#next-bin')
+				debug document.querySelector('#next-reply')
+				i document.querySelector('#next-launch')
 			when 'bin'
-				debug d('#next-reply')
-				debug d('#next-launch')
-				i d('#next-bin')
+				debug document.querySelector('#next-reply')
+				debug document.querySelector('#next-launch')
+				i document.querySelector('#next-bin')
 		return
 
 	###*
@@ -2353,7 +2312,7 @@ do ->
 	###
 
 	setup = ->
-		token = d('#note-input')
+		token = document.querySelector('#note-input')
 
 		###*
 		# @param {Object} e
@@ -2420,7 +2379,7 @@ do ->
 	###
 
 	update = (e) ->
-		el = d('#next')
+		el = document.querySelector('#next')
 		if (e.ctrlKey or e.metaKey) and 13 == e.keyCode and el and el.offsetHeight
 			e = el.firstChild
 			loop
@@ -2537,7 +2496,7 @@ do ->
 	###
 
 	runTest = ->
-		elems = d('.np')
+		elems = document.querySelectorAll('.np')
 
 		###*
 		# @param {Object} p
@@ -2595,7 +2554,7 @@ do ->
 	###
 
 	init = ->
-		items = d('.ks')
+		items = document.querySelectorAll('.ks')
 
 		###*
 		# @param {Object} e
@@ -2651,7 +2610,7 @@ do ->
 	###
 
 	show = ->
-		values = d('.form-submit')
+		values = document.querySelectorAll('.form-submit')
 
 		###*
 		# @param {Object} key
@@ -2803,9 +2762,9 @@ do ->
 		form: null
 		a: null
 		submit: ->
-			@form = d('#' + @g)
-			@a = d('#' + @f)
-			debug d('#newpass-error')
+			@form = document.querySelector('#' + @g)
+			@a = document.querySelector('#' + @f)
+			debug document.querySelector('#newpass-error')
 			if @m()
 
 				###* @type {boolean} ###
@@ -2816,7 +2775,7 @@ do ->
 				exports.h @form.action, @form, @c.bind(this)
 			return
 		m: ->
-			current = d('#np-pass')
+			current = document.querySelector('#np-pass')
 			if current.value
 				if !/^[A-Za-z0-9_!@#$%^&*()+:;,.?<>\/-]+$/.test(current.value)
 					return current.value = ''
@@ -2860,35 +2819,35 @@ do ->
 			###* @type {string} ###
 
 			@form.innerHTML = ''
-			a = d('#newpass-confirm')
+			a = document.querySelector('#newpass-confirm')
 			a.innerHTML = a.getAttribute('data-msg')
 			i a
-			i d('#next')
+			i document.querySelector('#next')
 			f()
 			return
 		A: (msg) ->
-			r = d('#npe-msg')
+			r = document.querySelector('#npe-msg')
 			i r
 			msg = msg or r.getAttribute('data-msg')
 
 			###* @type {string} ###
 
 			r.innerHTML = msg
-			i d('#newpass-error')
+			i document.querySelector('#newpass-error')
 
 			###* @type {boolean} ###
 
 			@form.e = false
 			self.b @form, 'invisible'
 			self.b @a, 'loading'
-			d('#np-pass').focus()
+			document.querySelector('#np-pass').focus()
 			return
 		n: ->
-			i d('#newpass-error')
-			r = d('#npe-msg')
+			i document.querySelector('#newpass-error')
+			r = document.querySelector('#npe-msg')
 			r.innerHTML = r.getAttribute('data-msg')
 			i r
-			d('#np-pass').focus()
+			document.querySelector('#np-pass').focus()
 			return
 		k: (deepDataAndEvents) ->
 			if !add.j
@@ -2905,9 +2864,9 @@ do ->
 		form: null
 		a: null
 		submit: ->
-			@form = d('#' + @g)
-			@a = d('#' + @f)
-			debug d('#lostpass-error')
+			@form = document.querySelector('#' + @g)
+			@a = document.querySelector('#' + @f)
+			debug document.querySelector('#lostpass-error')
 			if @m()
 
 				###* @type {boolean} ###
@@ -2918,11 +2877,11 @@ do ->
 				exports.h @form.action, @form, @c.bind(this)
 			return
 		m: ->
-			input = d('#lp-email')
+			input = document.querySelector('#lp-email')
 			if input.value.trim() then (if target.L(input.value.trim()) then true else input.focus()
-			d('#lpe-msg').innerHTML = d('#lpe-msg').getAttribute('data-msg')
-			i(d('#lostpass-error'))
-			i(d('#lpe-msg'))
+			document.querySelector('#lpe-msg').innerHTML = document.querySelector('#lpe-msg').getAttribute('data-msg')
+			i(document.querySelector('#lostpass-error'))
+			i(document.querySelector('#lpe-msg'))
 			false
 			) else input.focus()
 			false
@@ -2952,25 +2911,25 @@ do ->
 			###* @type {string} ###
 
 			@form.innerHTML = ''
-			a = d('#lostpass-confirm')
+			a = document.querySelector('#lostpass-confirm')
 			a.innerHTML = a.getAttribute('data-msg')
 			i a
 			return
 		A: (name) ->
-			key = d('#lpe-msg')
+			key = document.querySelector('#lpe-msg')
 			i key
 
 			###* @type {string} ###
 
 			key.innerHTML = name
-			i d('#lostpass-error')
+			i document.querySelector('#lostpass-error')
 
 			###* @type {boolean} ###
 
 			@form.e = false
 			self.b @form, 'invisible'
 			self.b @a, 'loading'
-			d('#lp-email').focus()
+			document.querySelector('#lp-email').focus()
 			return
 		k: (deepDataAndEvents) ->
 			if !add.j
@@ -2987,9 +2946,9 @@ do ->
 		form: null
 		a: null
 		submit: ->
-			@form = d('#' + @g)
-			@a = d('#' + @f)
-			debug d('#login-error')
+			@form = document.querySelector('#' + @g)
+			@a = document.querySelector('#' + @f)
+			debug document.querySelector('#login-error')
 			if @m()
 
 				###* @type {boolean} ###
@@ -3004,8 +2963,8 @@ do ->
 			###* @type {boolean} ###
 
 			res = true
-			input = d('#l-email')
-			textfield = d('#l-pass')
+			input = document.querySelector('#l-email')
+			textfield = document.querySelector('#l-pass')
 			if !textfield.value
 				textfield.focus()
 
@@ -3051,14 +3010,14 @@ do ->
 			target.w a
 			return
 		i: (e) ->
-			debug d('#le-input')
-			a = d('#le-tech')
+			debug document.querySelector('#le-input')
+			a = document.querySelector('#le-tech')
 			i a
 
 			###* @type {string} ###
 
 			a.innerHTML = e
-			i d('#login-error')
+			i document.querySelector('#login-error')
 
 			###* @type {boolean} ###
 
@@ -3067,11 +3026,11 @@ do ->
 			self.b @a, 'loading'
 			return
 		n: ->
-			debug d('#le-tech')
-			r = d('#le-input')
+			debug document.querySelector('#le-tech')
+			r = document.querySelector('#le-input')
 			i r
 			r.innerHTML = r.getAttribute('data-msg')
-			i d('#login-error')
+			i document.querySelector('#login-error')
 
 			###* @type {boolean} ###
 
@@ -3094,8 +3053,8 @@ do ->
 		form: null
 		a: null
 		submit: ->
-			@form = d('#' + @g)
-			@a = d('#' + @f)
+			@form = document.querySelector('#' + @g)
+			@a = document.querySelector('#' + @f)
 			@K()
 			if @m()
 
@@ -3115,9 +3074,9 @@ do ->
 			###* @type {boolean} ###
 
 			b = false
-			input = d('#s-email')
-			current = d('#s-pass')
-			filter = d('#s-agree')
+			input = document.querySelector('#s-email')
+			current = document.querySelector('#s-pass')
+			filter = document.querySelector('#s-agree')
 			if !current.value
 				current.focus()
 
@@ -3155,13 +3114,13 @@ do ->
 			else if b then false else true
 		K: (v) ->
 			debug [
-				d('#se-email')
-				d('#se-pass')
-				d('#se-agree')
-				d('#se-tech')
+				document.querySelector('#se-email')
+				document.querySelector('#se-pass')
+				document.querySelector('#se-agree')
+				document.querySelector('#se-tech')
 			]
 			if v and v.length
-				i d('#signup-error')
+				i document.querySelector('#signup-error')
 
 				###* @type {number} ###
 
@@ -3169,12 +3128,12 @@ do ->
 				pad = v.length
 				c = undefined
 				while x < pad
-					c = d('#se-' + v[x])
+					c = document.querySelector('#se-' + v[x])
 					c.innerHTML = c.getAttribute('data-msg')
 					i c
 					x++
 			else
-				debug d('#signup-error')
+				debug document.querySelector('#signup-error')
 			return
 		c: (a) ->
 			try
@@ -3205,18 +3164,18 @@ do ->
 			###* @type {string} ###
 
 			@form.innerHTML = ''
-			a = d('#signup-confirm')
+			a = document.querySelector('#signup-confirm')
 			a.innerHTML = a.getAttribute('data-msg')
 			i a
 			return
 		i: (e) ->
-			a = d('#se-tech')
+			a = document.querySelector('#se-tech')
 			i a
 
 			###* @type {string} ###
 
 			a.innerHTML = e
-			i d('#signup-error')
+			i document.querySelector('#signup-error')
 
 			###* @type {boolean} ###
 
@@ -3250,9 +3209,9 @@ do ->
 		a: null
 		Q: ''
 		submit: ->
-			@form = d('#' + @g)
-			@a = d('#' + @f)
-			input = d('#' + @C)
+			@form = document.querySelector('#' + @g)
+			@a = document.querySelector('#' + @f)
+			input = document.querySelector('#' + @C)
 			value = input.value.trim()
 			if value == @Q or '' == value
 				input.focus()
@@ -3300,14 +3259,14 @@ do ->
 					throw 1
 			catch c
 				return @i(data.r.refresh)
-			d('#current').innerHTML = a.html
-			debug d('#trending-mob')
-			d('#reply-input').focus()
+			document.querySelector('#current').innerHTML = a.html
+			debug document.querySelector('#trending-mob')
+			document.querySelector('#reply-input').focus()
 			next 'catch'
 			callers.p a.replies
 			return
 		i: (e) ->
-			a = d('#error')
+			a = document.querySelector('#error')
 
 			###* @type {string} ###
 
@@ -3324,8 +3283,8 @@ do ->
 			self.b @a, 'loading'
 			return
 		n: (r) ->
-			e = d('#' + @C)
-			debug d('#error')
+			e = document.querySelector('#' + @C)
+			debug document.querySelector('#error')
 
 			###* @type {boolean} ###
 
@@ -3357,13 +3316,13 @@ do ->
 
 			return
 		F: (e, value) ->
-			a = d('#error')
+			a = document.querySelector('#error')
 			a.innerHTML = e
 
 			###* @type {string} ###
 
 			a.className = 'system-message'
-			debug d('#current')
+			debug document.querySelector('#current')
 			apply value
 			return
 		k: (deepDataAndEvents) ->
@@ -3382,9 +3341,9 @@ do ->
 		form: null
 		a: null
 		submit: ->
-			@form = d('#' + @g)
-			@a = d('#' + @f)
-			input = d('#' + @C)
+			@form = document.querySelector('#' + @g)
+			@a = document.querySelector('#' + @f)
+			input = document.querySelector('#' + @C)
 			if input.value.trim()
 
 				###* @type {boolean} ###
@@ -3429,22 +3388,22 @@ do ->
 					throw 1
 			catch c
 				return @i(data.r.refresh)
-			h = d('#current').parentNode.offsetHeight
+			h = document.querySelector('#current').parentNode.offsetHeight
 			if a['catch']
-				i d('#tab-catch')
+				i document.querySelector('#tab-catch')
 				setTimeout (->
-					debug d('#tab-catch')
+					debug document.querySelector('#tab-catch')
 					return
 				), 3e4
-			n = quote(d('#' + @C).value)
-			b = d('#myReply')
+			n = quote(document.querySelector('#' + @C).value)
+			b = document.querySelector('#myReply')
 			b.innerHTML = n
 			i b
 			apply 'launch'
 
 			###* @type {number} ###
 
-			n = d('#current').parentNode.offsetHeight - (@a.offsetHeight)
+			n = document.querySelector('#current').parentNode.offsetHeight - (@a.offsetHeight)
 			h -= n
 			if 0 < h
 
@@ -3463,13 +3422,13 @@ do ->
 				###* @type {string} ###
 
 				n.style.height = h + 'px'
-				d('#current').parentNode.appendChild n
+				document.querySelector('#current').parentNode.appendChild n
 			debug @a
 			fn 'view'
 			callers.p a.replies
 			return
 		i: (obj) ->
-			elem = d('#reply-error')
+			elem = document.querySelector('#reply-error')
 
 			###* @type {string} ###
 
@@ -3486,17 +3445,17 @@ do ->
 			self.b @a, 'loading'
 			return
 		F: (e) ->
-			a = d('#error')
+			a = document.querySelector('#error')
 			a.innerHTML = e
 
 			###* @type {string} ###
 
 			a.className = 'system-message'
-			debug d('#current')
+			debug document.querySelector('#current')
 			apply 'launch'
 			return
 		n: (content) ->
-			elem = d('#reply-error')
+			elem = document.querySelector('#reply-error')
 			elem.innerHTML = content
 
 			###* @type {string} ###
@@ -3525,8 +3484,8 @@ do ->
 		a: null
 		submit: ->
 			event.remove document, 'keydown', update
-			@form = d('#' + @g)
-			@a = d('#' + @f)
+			@form = document.querySelector('#' + @g)
+			@a = document.querySelector('#' + @f)
 
 			###* @type {boolean} ###
 
@@ -3565,17 +3524,17 @@ do ->
 					throw 1
 			catch c
 				return
-			if d('#spacer')
-				d('#spacer').parentNode.removeChild d('#spacer')
-			debug d('#next')
-			d('#current').innerHTML = a.html
-			d('#reply-input').focus()
+			if document.querySelector('#spacer')
+				document.querySelector('#spacer').parentNode.removeChild document.querySelector('#spacer')
+			debug document.querySelector('#next')
+			document.querySelector('#current').innerHTML = a.html
+			document.querySelector('#reply-input').focus()
 			next 'catch'
 			callers.p a.replies
 			return
 		F: (e) ->
-			debug d('#current')
-			a = d('#error')
+			debug document.querySelector('#current')
+			a = document.querySelector('#error')
 
 			###* @type {string} ###
 
@@ -3592,8 +3551,8 @@ do ->
 		form: null
 		a: null
 		submit: ->
-			@form = d('#' + @g)
-			@a = d('#' + @f)
+			@form = document.querySelector('#' + @g)
+			@a = document.querySelector('#' + @f)
 			if @m()
 
 				###* @type {boolean} ###
@@ -3608,9 +3567,9 @@ do ->
 			###* @type {boolean} ###
 
 			res = true
-			err = d('#cname')
-			_this = d('#cemail')
-			comment = d('#cmessage')
+			err = document.querySelector('#cname')
+			_this = document.querySelector('#cemail')
+			comment = document.querySelector('#cmessage')
 
 			###*
 			# @param {undefined} value
@@ -3673,17 +3632,17 @@ do ->
 					throw 1
 			catch c
 				return @i(data.r.refresh)
-			debug d('#error')
+			debug document.querySelector('#error')
 			debug @a
 
 			###* @type {string} ###
 
 			@a.innerHTML = ''
-			i d('#confirm')
+			i document.querySelector('#confirm')
 			f()
 			return
 		i: (e) ->
-			a = d('#error')
+			a = document.querySelector('#error')
 
 			###* @type {string} ###
 
@@ -3714,15 +3673,15 @@ do ->
 		form: null
 		a: null
 		submit: ->
-			@form = d('#' + @g)
-			@a = d('#' + @f)
+			@form = document.querySelector('#' + @g)
+			@a = document.querySelector('#' + @f)
 			if @m()
 
 				###* @type {boolean} ###
 
 				@form.e = true
 				self.d @form, 'invisible'
-				debug d('burnit')
+				debug document.querySelectorAll('burnit')
 				self.d @a, 'loading'
 				exports.h @form.action, @form, @c.bind(this)
 			return
@@ -3736,7 +3695,7 @@ do ->
 				if siblings[j].checked
 					return true
 				j++
-			i d('#burn-hint')
+			i document.querySelector('#burn-hint')
 			false
 		c: (a) ->
 			try
@@ -3762,13 +3721,13 @@ do ->
 					throw 1
 			catch c
 				return @i(data.r.refresh)
-			h = d('#current').parentNode.offsetHeight
-			i d('#burn-result')
+			h = document.querySelector('#current').parentNode.offsetHeight
+			i document.querySelector('#burn-result')
 			apply 'launch'
 
 			###* @type {number} ###
 
-			p = d('#current').parentNode.offsetHeight - (@a.offsetHeight)
+			p = document.querySelector('#current').parentNode.offsetHeight - (@a.offsetHeight)
 
 			###* @type {number} ###
 
@@ -3790,13 +3749,13 @@ do ->
 				###* @type {string} ###
 
 				p.style.height = h + 'px'
-				d('#current').parentNode.appendChild p
+				document.querySelector('#current').parentNode.appendChild p
 			debug @a
 			fn 'view'
 			callers.p a.replies
 			return
 		i: (obj) ->
-			elem = d('#burn-error')
+			elem = document.querySelector('#burn-error')
 
 			###* @type {string} ###
 
@@ -3825,7 +3784,7 @@ do ->
 		ga: 14
 		q: null
 		B: ->
-			if d('#tab-replies') or d('#menu-replies') or d('#next-reply')
+			if document.querySelector('#tab-replies') or document.querySelector('#menu-replies') or document.querySelector('#next-reply')
 				if null != @q
 					clearTimeout @q
 
@@ -3872,17 +3831,17 @@ do ->
 
 				title = document.title.replace(/^\(\d+\)\s/, '')
 				if 0 < obj.num
-					debug d('#menu-launch')
-					if d('#tab-replies')
-						i d('#tab-replies')
-						d('#link-replies').innerHTML = obj.html
-						d('#link-replies').href = obj.url
-					if d('#menu-replies')
-						d('#menu-replies').innerHTML = obj.html
-						d('#menu-replies').href = obj.url
-						i d('#menu-replies')
-					if d('#next')
-						d('#next-reply').href = obj.url
+					debug document.querySelector('#menu-launch')
+					if document.querySelector('#tab-replies')
+						i document.querySelector('#tab-replies')
+						document.querySelector('#link-replies').innerHTML = obj.html
+						document.querySelector('#link-replies').href = obj.url
+					if document.querySelector('#menu-replies')
+						document.querySelector('#menu-replies').innerHTML = obj.html
+						document.querySelector('#menu-replies').href = obj.url
+						i document.querySelector('#menu-replies')
+					if document.querySelector('#next')
+						document.querySelector('#next-reply').href = obj.url
 						flush 'reply'
 
 					###* @type {string} ###
@@ -3892,15 +3851,15 @@ do ->
 
 					###* @type {boolean} ###
 
-					obj = !self.v(d('#menu-replies'), 'hide')
-					debug d('#tab-replies')
-					debug d('#menu-replies')
-					if d('#next')
+					obj = !self.v(document.querySelector('#menu-replies'), 'hide')
+					debug document.querySelector('#tab-replies')
+					debug document.querySelector('#menu-replies')
+					if document.querySelector('#next')
 						flush 'default'
 					name = data.R
 					if obj
 						if 'index' != name
-							i d('#menu-launch')
+							i document.querySelector('#menu-launch')
 
 					###* @type {string} ###
 
@@ -3913,13 +3872,13 @@ do ->
 			@interval = if 6 > @count then 10 else 2 * @interval
 			return
 	throttledUpdate ->
-		data.na = self.v(d('body')[0], 'in')
+		data.na = self.v(document.querySelectorAll('body')[0], 'in')
 		if 'localhost' == location.hostname or 'file:' == location.protocol
 
 			###* @type {string} ###
 
-			d('body')[0].innerHTML = ''
-		li = d('#nosupport')
+			document.querySelectorAll('body')[0].innerHTML = ''
+		li = document.querySelector('#nosupport')
 		if !event.isSupported('keyup') or window.operamini
 
 			###* @type {string} ###
